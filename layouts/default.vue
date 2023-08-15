@@ -1,8 +1,6 @@
 <template>
   <main class="main" v-cloak>
-    <Header></Header>
     <Nuxt class="main__page" />
-    <Footer></Footer>
     <transition name="fade">
       <div>
         <div class="home_sun" v-if="$route.path == '/'">
@@ -10,14 +8,6 @@
         </div>
         <i class="home_bg"></i>
       </div>
-    </transition>
-    <transition name="fade">
-      <button v-if="showScrollToTop" @click="scrollToTop" class="scroll_to_top">
-        <img src="~/assets/img/footer/arrow.svg" alt="totop" />
-      </button>
-    </transition>
-    <transition name="fade">
-      <Privacy v-if="visiblePrivacy" @close="visiblePrivacy = false"></Privacy>
     </transition>
   </main>
 </template>
@@ -30,27 +20,9 @@ export default {
       showScrollToTop: false,
     }
   },
-  mounted() {
-    let url = 'https://seekastrology.com'
-    if (window.location.host == 'seekastrology.com') {
-      url = 'https://www.seekastrology.com'
-    } else if (window.location.host == 'www.seekastrology.com') {
-      url = 'https://seekastrology.com'
-    } else {
-      url = `http://${window.location.host}`
-    }
-    this.$store.commit('UPDATE_INTERSPERSE_URL', url)
-    window.addEventListener('scroll', this.handleScroll)
-  },
-  beforeDestroy() {
-    window.removeEventListener('scroll', this.handleScroll)
-  },
+  mounted() {},
+  beforeDestroy() {},
   methods: {
-    handleScroll() {
-      const scrollThreshold = 500
-      this.showScrollToTop =
-        document.documentElement.scrollTop > scrollThreshold
-    },
     scrollToTop() {
       window.scrollTo({
         top: 0,
@@ -71,14 +43,13 @@ export default {
 .main {
   min-height: 100vh;
   overflow: hidden;
-  //   background: url('/img/bg.png');
   position: relative;
   .home_bg {
     display: inline-block;
     position: absolute;
-    top: -100px;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     width: 1500px;
     height: 1500px;
     z-index: -1;
@@ -89,9 +60,9 @@ export default {
   .home_sun {
     display: inline-block;
     position: absolute;
-    top: -320px;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     z-index: -1;
     &_icon {
       display: inline-block;
@@ -121,7 +92,6 @@ export default {
 @media (max-width: 750px) {
   $pr: math.div(1vw, 3.75);
   .main {
-    // background: url('/img/bg.png');
     .home_bg {
       width: 100%;
       height: 900 * $pr;
