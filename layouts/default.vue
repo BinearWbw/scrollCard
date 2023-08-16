@@ -4,7 +4,7 @@
     <transition name="fade">
       <div>
         <div class="home_sun" v-if="$route.path == '/'">
-          <i class="home_sun_icon"></i>
+          <!-- <i class="home_sun_icon"></i> -->
         </div>
         <i class="home_bg"></i>
       </div>
@@ -47,9 +47,9 @@ export default {
   .home_bg {
     display: inline-block;
     position: absolute;
-    top: 50%;
+    top: -1rem;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     width: 1500px;
     height: 1500px;
     z-index: -1;
@@ -60,9 +60,9 @@ export default {
   .home_sun {
     display: inline-block;
     position: absolute;
-    top: 50%;
+    top: -100px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     z-index: -1;
     &_icon {
       display: inline-block;
